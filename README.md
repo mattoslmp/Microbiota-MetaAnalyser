@@ -1,1 +1,1 @@
-# microbiome-plots-paper - metaanalyser
+# microbiome-plots-paper - MetaAnalyser
