@@ -25,7 +25,7 @@ install.packages("dplyr")
 install.packages("ggsci")
 install.packages("gridExtra")
 install.packages("qiime2R")
-
+```R
 ## Usage
 
 - Clone or download the repository to your local machine.
