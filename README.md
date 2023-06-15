@@ -1,27 +1,57 @@
-This code was written by Leandro de Mattos Pereira on February 12, 2018. It utilizes several R packages, including Phyloseq, Melt and ggplot, biomformat, and dplyr.
-
-Purpose
-The purpose of this code is to analyze 16S sequencing data using the Phyloseq package in R. It performs various operations on the data, such as reading metadata, taxonomic information, and phylogenetic tree. It then processes the data and generates visualizations, specifically focusing on phylum-level abundance analysis.
+This repository contains R code for analyzing 16S rRNA sequencing data using the Phyloseq, ggplot2, biomformat, and dplyr packages. The code processes the sequencing data, performs taxonomic classification, and generates visualizations.
 
 Installation
-Before running the code, make sure to install the necessary R packages. If you haven't installed the required packages, uncomment the code for installing them using the BiocManager package. You can do this by removing the '#' symbol at the beginning of the lines and executing the code.
+To run the code, you need to have R installed on your system. Additionally, the following R packages should be installed:
 
+Phyloseq
+ggplot2
+biomformat
+dplyr
+ggsci
+gridExtra
+qiime2R
+You can install these packages using the following commands:
+
+install.packages("phyloseq")
+install.packages("ggplot2")
+install.packages("biomformat")
+install.packages("dplyr")
+install.packages("ggsci")
+install.packages("gridExtra")
+install.packages("qiime2R")
 Usage
-To use this code, follow these steps:
+Clone or download the repository to your local machine.
 
-Set the working directory to the appropriate location where the input files are stored.
-Read the metadata file using the read_q2metadata function and provide the path to the metadata file.
-Read the SVs (sequence variants) file using the read_qza function and provide the path to the SVs file.
-Read the taxonomy file using the read_qza function and provide the path to the taxonomy file.
-Read the phylogenetic tree file using the read_qza function and provide the path to the tree file.
-Create a Phyloseq object using the qza_to_phyloseq function and pass the appropriate arguments for features, taxonomy, metadata, and tree.
-Perform data processing and analysis using various functions and operations provided in the code.
-Generate visualizations, such as bar plots, using the ggplot package.
-Save the generated plots using the ggsave function.
-Additional Notes
-Make sure to modify the file paths in the code according to the location of your input files.
-The code includes additional operations and functions for data processing and analysis. Feel free to customize and modify the code based on your specific requirements.
-The code also includes a commented section for exporting the data to an Excel file using the write.xlsx function. You can uncomment and modify this section if needed.
-Please note that this readme provides a brief overview of the code and its usage. For a more detailed understanding of the code and its functionality, refer to the comments and documentation provided within the code itself.
+Set the working directory in the R code to the appropriate location where your input data files are located.
 
-For any further questions or assistance, please feel free to reach out.
+Modify the file paths in the R code to match the locations of your input data files.
+
+Run the R code in an R environment or an R script editor.
+
+Description
+The R code performs the following steps:
+
+Reads the metadata file and input data files (SVs, taxonomy, and tree) using the read_qza and read_q2metadata functions from the qiime2R package.
+
+Creates a Phyloseq object using the input data.
+
+Filters the data, transforms it to relative abundance, and aggregates at the phylum level.
+
+Calculates the mean abundance and standard deviation for each phylum in each sample.
+
+Sorts the data by average abundance.
+
+Creates a bar plot of the average abundance of phyla, grouped by host, environment feature, and isolation source.
+
+Saves the plot as a PNG file.
+
+License
+This code is released under the MIT License.
+
+Please feel free to modify and use this code according to your needs.
+
+Contact
+If you have any questions or suggestions, please feel free to contact the author:
+
+Author: Leandro de Mattos Pereira
+Email: mattoslmp@gmail.com
