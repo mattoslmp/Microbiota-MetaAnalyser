@@ -24,7 +24,7 @@ install.packages("biomformat")
 install.packages("dplyr")
 install.packages("ggsci")
 install.packages("gridExtra")
-install.packages("qiime2R")```
+install.packages("qiime2R")"```"
 
 ## Usage
 
