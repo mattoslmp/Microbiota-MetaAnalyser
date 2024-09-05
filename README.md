@@ -1,72 +1,80 @@
 # Readme
+# Análise Metagenômica 16S
 
-This repository contains R code for analyzing 16S rRNA sequencing data using the Phyloseq, ggplot2, biomformat, and dplyr packages. The code processes the sequencing data, performs taxonomic classification, and generates visualizations.
+Este repositório contém um script em R para análise de dados de metagenômica 16S utilizando pacotes como Phyloseq, ggplot2 e dplyr. O script realiza a leitura de arquivos gerados pelo QIIME2 e faz a agregação e visualização de dados taxonômicos em diferentes níveis, como Filo, Gênero e Família.
 
+## Funcionalidades
 
-## Installation
+- **Carregamento de arquivos QIIME2**: O script aceita arquivos `.qza` gerados pelo QIIME2, como sequências, taxonomia e árvore filogenética.
+- **Análise de Abundância Relativa**: Calcula a abundância relativa em níveis taxonômicos diferentes (Phylum, Genus, Family) e gera gráficos de barras empilhadas.
+- **Flexibilidade com parâmetros**: O script é modular e pode ser reutilizado para diferentes datasets, bastando fornecer os nomes dos arquivos.
+- **Visualizações customizadas**: Utiliza `ggplot2` para visualização dos resultados em gráficos com cores definidas para diferentes grupos taxonômicos.
 
-To run the code, you need to have R installed on your system. Additionally, the following R packages should be installed:
+## Estrutura do Projeto
 
-- Phyloseq
-- ggplot2
-- biomformat
-- dplyr
-- ggsci
-- gridExtra
-- qiime2R
+- **`phylo_analysis.R`**: O script principal que realiza a análise de abundância relativa e gera os gráficos.
+- **`data/`**: Diretório para armazenar os arquivos de dados utilizados (não incluído no repositório).
+- **`figures/`**: Diretório para armazenar as figuras geradas pelos gráficos (não incluído no repositório).
 
-You can install these packages using the following commands:
+## Requisitos
 
-```R
-install.packages("phyloseq")
-install.packages("ggplot2")
-install.packages("biomformat")
-install.packages("dplyr")
-install.packages("ggsci")
-install.packages("gridExtra")
-install.packages("qiime2R")
-```
-## Usage
+O script requer os seguintes pacotes R:
 
-- Clone or download the repository to your local machine.
+- `phyloseq`
+- `biomformat`
+- `dplyr`
+- `ggplot2`
+- `ggsci`
+- `gridExtra`
+- `qiime2R`
+- `stringr`
+- `openxlsx`
 
-- Set the working directory in the R code to the appropriate location where your input data files are located.
+Para instalar todos os pacotes, execute o seguinte código no R:
 
-- Modify the file paths in the R code to match the locations of your input data files.
+```r
+install.packages(c("phyloseq", "biomformat", "dplyr", "ggplot2", "ggsci", "gridExtra", "qiime2R", "stringr", "openxlsx"))
 
-- Run the R code in an R environment or an R script editor.
+## Uso
+## 1. Configuração do ambiente de trabalho
+ Certifique-se de que todos os arquivos de dados estejam localizados no diretório correto. No início do script, você pode definir o diretório de trabalho e os arquivos de entrada:
+diretorio <- "/caminho/para/seus/dados"
+metadata_file <- "manifesto.qza"
+features_file <- "sequencias.qza"
+taxonomy_file <- "taxonomia.qza"
+tree_file <- "arvore.qza"
+## 2. Execução do Script
 
-- Note: Make sure to install the required R packages mentioned in the installation section.
+- O script é dividido em funções modulares que permitem carregar dados, processá-los e gerar gráficos de abundância relativa em diferentes níveis taxonômicos (Filo, Gênero e Família). Para rodar o script, basta:
+- source("phylo_analysis.R")
 
-## Description
+## 3. Geração de Gráficos
+Os gráficos são gerados automaticamente e salvos no diretório especificado. Eles incluem:
 
-The R code performs the following steps:
-
-Reads the metadata file and input data files (SVs, taxonomy, and tree) using the read_qza and read_q2metadata functions from the qiime2R package.
-
-Creates a Phyloseq object using the input data.
-
-Filters the data, transforms it to relative abundance, and aggregates at the phylum level.
-
-Calculates the mean abundance and standard deviation for each phylum in each sample.
-
-Sorts the data by average abundance.
-
-Creates a bar plot of the average abundance of phyla, grouped by host, environment feature, and isolation source.
-
-Saves the plot as a PNG file.
-
-Note: The code assumes specific file formats and data structure. Make sure to adapt it to your specific dataset.
-
-## License
-This code is released under the MIT License.
-
-Please feel free to modify and use this code according to your needs.
-
-## Contact
-If you have any questions or suggestions, please feel free to contact the author:
-
-Author: Leandro de Mattos Pereira
-Email: mattoslmp@gmail.com
+- Abundância relativa por Filo (phylo_avg_abundance_relative_deep_sea.png)
+- Abundância relativa por Gênero (genus_avg_abundance_relative_deep_sea.png)
+- Abundância relativa por Família (family_avg_abundance_relative_deep_sea.png)
 
 
+# Carregar o script
+source("phylo_analysis.R")
+
+# Definir os arquivos
+diretorio <- "/home/user/metagenomics"
+metadata_file <- "metadata.qza"
+features_file <- "features.qza"
+taxonomy_file <- "taxonomy.qza"
+tree_file <- "tree.qza"
+
+# Carregar os dados
+dados <- carregar_dados_qiime2(diretorio, metadata_file, features_file, taxonomy_file, tree_file)
+
+# Criar o objeto Phyloseq
+ps <- criar_phyloseq(dados, features_file, taxonomy_file, metadata_file, tree_file)
+
+# Gerar gráficos
+gerar_grafico_abundancia(df2, "Host", "avg_abundance", "Phylum", "Env_feature", "Mean of Relative Abundance (% Phyla)", "phylo_abund.png")
+
+## Script done for the analyses of barplot of the article:
+
+- Coral Microbiome Manipulation Elicits metabolic and genetic restructuring to mitigate heat stress and evade Mortality. Santoro, E. P.; Borges, R. M.; Espinoza, J. L.; Freire., M.; Messias, C. S. M. A.; Villela, H. M. D.; Mattos, L. P.; Vilela, C. L. S.; Rosado, J. G.; Cardoso, P. M.; Rosado, P. M.; Assis, J. M.; Duarte, G. A. S.; Perna, G.; Rosado, A. S.; Macrae, A.; Dupont, C. L.; Nelson, K.E.; Sweet, M. J.; Voolstra, C. R.; Peixoto, R. S. Novembro de 2020. Science Advance. v. 7, p. eabg3088, 2021. Link to the Paper
