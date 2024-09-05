@@ -34,7 +34,7 @@ Para instalar todos os pacotes, execute o seguinte código no R:
 
 ```r
 install.packages(c("phyloseq", "biomformat", "dplyr", "ggplot2", "ggsci", "gridExtra", "qiime2R", "stringr", "openxlsx"))
-
+```
 ## Uso
 ## 1. Configuração do ambiente de trabalho
  Certifique-se de que todos os arquivos de dados estejam localizados no diretório correto. No início do script, você pode definir o diretório de trabalho e os arquivos de entrada:
@@ -46,9 +46,10 @@ tree_file <- "arvore.qza"
 ## 2. Execução do Script
 
 - O script é dividido em funções modulares que permitem carregar dados, processá-los e gerar gráficos de abundância relativa em diferentes níveis taxonômicos (Filo, Gênero e Família). Para rodar o script, basta:
-- source("phylo_analysis.R")
+source("phylo_analysis.R")
 
 ## 3. Geração de Gráficos
+
 Os gráficos são gerados automaticamente e salvos no diretório especificado. Eles incluem:
 
 - Abundância relativa por Filo (phylo_avg_abundance_relative_deep_sea.png)
