@@ -76,6 +76,6 @@ ps <- criar_phyloseq(dados, features_file, taxonomy_file, metadata_file, tree_fi
 # Gerar gráficos
 gerar_grafico_abundancia(df2, "Host", "avg_abundance", "Phylum", "Env_feature", "Mean of Relative Abundance (% Phyla)", "phylo_abund.png")
 
-## Script done for the analyses of barplot of the article:
+## Script done for taxonomic profile analyes of coral microbiome:
 
 - Coral Microbiome Manipulation Elicits metabolic and genetic restructuring to mitigate heat stress and evade Mortality. Santoro, E. P.; Borges, R. M.; Espinoza, J. L.; Freire., M.; Messias, C. S. M. A.; Villela, H. M. D.; Mattos, L. P.; Vilela, C. L. S.; Rosado, J. G.; Cardoso, P. M.; Rosado, P. M.; Assis, J. M.; Duarte, G. A. S.; Perna, G.; Rosado, A. S.; Macrae, A.; Dupont, C. L.; Nelson, K.E.; Sweet, M. J.; Voolstra, C. R.; Peixoto, R. S. Novembro de 2020. Science Advance. v. 7, p. eabg3088, 2021. Link to the Paper
